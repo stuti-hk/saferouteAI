@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analyzing Route</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="main-layout">
+
+    <!-- LEFT SIDE MAP -->
+    <div class="left-panel">
+        <iframe id="mapFrame"></iframe>
+    </div>
+
+    <!-- RIGHT SIDE LOADING -->
+    <div class="right-panel">
+
+        <h2>🤖 SafeRoute AI Processing...</h2>
+        <p id="stepText">Initializing analysis...</p>
+
+        <div class="spinner"></div>
+
+        <div class="progress">
+            <div class="progress-fill"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+let params = new URLSearchParams(window.location.search);
+
+let source = params.get("source");
+let destination = params.get("destination");
+let time = params.get("time");
+
+// 🗺️ SHOW MAP
+document.getElementById("mapFrame").src =
+    `https://www.google.com/maps?q=${source} to ${destination}&output=embed`;
+
+// 🔄 AI TEXT STEPS
+let steps = [
+    "🔍 Checking location safety...",
+    "📊 Calculating safety score...",
+    "🚦 Evaluating crowd density...",
+    "🧠 Finding safest route..."
+];
+
+let i = 0;
+setInterval(() => {
+    document.getElementById("stepText").innerText = steps[i];
+    i = (i + 1) % steps.length;
+}, 600);
+
+// ⏩ REDIRECT
+setTimeout(() => {
+    window.location.href =
+        `/result?source=${source}&destination=${destination}&time=${time}`;
+}, 3000);
+
+</script>
+
+</body>
+</html>

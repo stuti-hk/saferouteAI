@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SafeRoute AI</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="main-layout">
+
+    <!-- LEFT SIDE (METRO STYLE HERO) -->
+    <div class="left-panel">
+
+         <div class="hero">
+
+    <h1 class="title">SafeRoute AI</h1>
+    <p class="tagline">Choose the safest route, not just the fastest</p>
+
+    <!-- ANIMATED IMAGE -->
+    <div class="image-wrapper">
+
+    <div class="logo-box">
+        <img src="/static/map.png" class="hero-image">
+    </div>
+
+</div>
+
+</div>
+
+    </div>
+
+    <!-- RIGHT SIDE (FORM) -->
+    <div class="right-panel">
+
+        <div class="container">
+
+            <h2>Enter Route Details</h2>
+
+            <div class="autocomplete">
+                <input id="source" placeholder="Enter Source" oninput="getSuggestions('source')">
+                <div id="sourceList" class="suggestions"></div>
+            </div>
+
+            <div class="autocomplete">
+                <input id="destination" placeholder="Enter Destination" oninput="getSuggestions('destination')">
+                <div id="destinationList" class="suggestions"></div>
+            </div>
+
+            <select id="time">
+                <option value="Day">Day</option>
+                <option value="Night">Night</option>
+            </select>
+
+            <button onclick="goToLoading()">Find Safe Route</button>
+            <button class="sos" onclick="sendSOS()">🚨 SOS Emergency</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+<script>
+function goToLoading() {
+    let source = document.getElementById("source").value.trim();
+    let destination = document.getElementById("destination").value.trim();
+    let time = document.getElementById("time").value;
+
+    if (!source || !destination) {
+        alert("Please enter both source and destination");
+        return;
+    }
+
+    window.location.href =
+        `/loading?source=${encodeURIComponent(source)}&destination=${encodeURIComponent(destination)}&time=${time}`;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+/* 🌌 GLOBAL */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at 20% 20%, #1e1b4b, #020617);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ✨ BACKGROUND GLOW (FIXED) */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    filter: blur(120px);
+    animation: bgPulse 6s infinite alternate;
+
+    pointer-events: none;   /* 🔥 IMPORTANT FIX */
+    z-index: 0;
+}
+
+body::before {
+    background: radial-gradient(circle, rgba(139,92,246,0.4), transparent);
+    top: 20%;
+    left: 20%;
+}
+
+body::after {
+    background: radial-gradient(circle, rgba(6,182,212,0.4), transparent);
+    bottom: 10%;
+    right: 20%;
+}
+
+@keyframes bgPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+/* 🌐 LAYOUT */
+.main-layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT PANEL */
+.left-panel {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+}
+
+.title {
+    font-size: 42px;
+    color: #8b5cf6;
+    text-shadow: 0 0 20px #8b5cf6, 0 0 40px #06b6d4;
+}
+
+.tagline {
+    color: #cbd5f5;
+}
+
+/* LOGO BOX */
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.logo-box {
+    width: 340px;
+    height: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 0 30px rgba(139,92,246,0.4),
+        inset 0 0 20px rgba(6,182,212,0.2);
+}
+
+.hero-image {
+    width: 75%;
+    object-fit: contain;
+    mix-blend-mode: lighten;
+
+    filter:
+        drop-shadow(0 0 20px rgba(6,182,212,0.7))
+        drop-shadow(0 0 35px rgba(139,92,246,0.7));
+}
+
+/* RIGHT PANEL */
+.right-panel {
+    width: 40%;
+    padding: 25px;
+    backdrop-filter: blur(15px);
+    background: rgba(15, 23, 42, 0.7);
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+
+    position: relative;
+    z-index: 5;   /* 🔥 IMPORTANT */
+}
+
+/* CONTAINER */
+.container {
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* INPUT */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #020617;
+    color: white;
+
+    position: relative;
+    z-index: 10;   /* 🔥 IMPORTANT */
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* SOS */
+.sos {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* AUTOCOMPLETE */
+.autocomplete {
+    position: relative;
+}
+
+.suggestions {
+    position: absolute;
+    width: 100%;
+    background: #020617;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #7c3aed;
+    z-index: 1000;
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+}
+
+.suggestions div {
+    padding: 10px;
+}
+
+.suggestions div:hover {
+    background: #1e293b;
+    cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+    }
+}
+/* MAP FIX */
+#mapFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* If map is inside a container */
+.map-container {
+    width: 100%;
+    height: 100vh;   /* full screen height */
+    display: flex;
+}
+/* SAFE BOX */
+.safe-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(6,182,212,0.1);
+    border: 1px solid #06b6d4;
+    box-shadow: 0 0 10px rgba(6,182,212,0.4);
+}
+
+/* ROUTE OPTIONS */
+.route-options {
+    margin-top: 15px;
+}
+
+.route-option {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.route-option.safe {
+    background: rgba(34,197,94,0.2);
+    border-left: 5px solid #22c55e;
+}
+
+.route-option.risky {
+    background: rgba(239,68,68,0.2);
+    border-left: 5px solid #ef4444;
+}
+
+/* LEGEND */
+.legend {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #cbd5f5;
+}
